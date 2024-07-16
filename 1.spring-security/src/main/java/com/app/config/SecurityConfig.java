@@ -30,16 +30,27 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
+
+                    // Permitir acceso a la consola H2
+                    http.requestMatchers(HttpMethod.GET, "/console/**").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/console/**").permitAll();
+
                     // Configurar los endpoints publicos
                     http.requestMatchers(HttpMethod.GET, "/auth/get").permitAll();
 
-                    // Cofnigurar los endpoints privados
+
+                    // Configurar los endpoints privados
+
                     http.requestMatchers(HttpMethod.POST, "/auth/post").hasAnyRole("ADMIN", "DEVELOPER");
                     http.requestMatchers(HttpMethod.PATCH, "/auth/patch").hasAnyAuthority("REFACTOR");
 
                     // Configurar el resto de endpoint - NO ESPECIFICADOS
                     http.anyRequest().denyAll();
                 })
+                .headers(headers -> headers
+                        .frameOptions().sameOrigin() // Permitir frames del mismo origen
+                        .contentSecurityPolicy("frame-src 'self';") // Opcional: Configurar CSP para permitir frames del mismo origen
+                )
                 .build();
     }
 
