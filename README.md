@@ -1,5 +1,5 @@
 # 1. Proyecto de Seguridad con Spring Security 6
-Este proyecto es una guía completa para principiantes sobre cómo implementar Spring Security 6 con Spring Boot 3. A continuación, se detallan los principales conceptos y pasos abordados en el video.
+Este proyecto es una guía completa para principiantes sobre cómo implementar Spring Security 6 con Spring Boot 3.
 
 ## Descripción
 Este proyecto tiene como objetivo enseñar a los desarrolladores cómo asegurar sus aplicaciones utilizando Spring Security 6. Se cubren temas desde la arquitectura básica hasta la implementación de autenticación y autorización con diferentes proveedores.
